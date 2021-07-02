@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8f28270-6df5-4a03-8481-b5fcfff72043">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Fecha" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT m.nombre_materia, al.documento_alumno, al.nombre_alumno, a.fecha_asistencia, a.presencia_asistencia 
+FROM asistencias a, alumnos_materias am, alumnos al, materias m
+where a.id_alumno_materia = am.id_alumno_materia
+and am.id_alumno = al.id_alumno and am.id_materia = m.id_materia and a.fecha_asistencia = $P{Fecha}
+ORDER BY m.nombre_materia, al.documento_alumno]]>
+	</queryString>
+	<field name="nombre_materia" class="java.lang.String"/>
+	<field name="documento_alumno" class="java.lang.String"/>
+	<field name="nombre_alumno" class="java.lang.String"/>
+	<field name="fecha_asistencia" class="java.sql.Date"/>
+	<field name="presencia_asistencia" class="java.lang.String"/>
+	<group name="nombre_materia">
+		<groupExpression><![CDATA[$F{nombre_materia}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="208" y="0" width="100" height="20" uuid="c43d364d-9fbb-4394-be2c-d91fdde8fe4f"/>
+				<textFieldExpression><![CDATA[$P{Fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="2" width="100" height="20" uuid="3269728c-0a21-4ccc-9b94-e99d18c0b607"/>
+				<text><![CDATA[nombre_materia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="2" width="100" height="20" uuid="08e17dc2-6fb4-4a0a-8c46-db88051a3a03"/>
+				<text><![CDATA[documento_alumno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="2" width="100" height="20" uuid="ceef2c7d-efbc-4c69-823e-d4942e6225e3"/>
+				<text><![CDATA[nombre_alumno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="2" width="100" height="20" uuid="0df723bc-0fd8-417c-a556-c95478c86b67"/>
+				<text><![CDATA[fecha_asistencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<elementGroup/>
+			<textField>
+				<reportElement x="17" y="22" width="100" height="20" uuid="f35e595b-d80f-40eb-b44f-64fa92ce56d3"/>
+				<textFieldExpression><![CDATA[$F{nombre_materia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="31" width="100" height="20" uuid="1078d14e-eda6-4cd9-9844-81bcc26b4d69"/>
+				<textFieldExpression><![CDATA[$F{documento_alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="32" width="100" height="20" uuid="53833e96-546d-4d8c-a1dd-6196f06371f7"/>
+				<textFieldExpression><![CDATA[$F{nombre_alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="37" width="100" height="20" uuid="2c628ff6-a2d3-4546-bccc-117d195cde00"/>
+				<textFieldExpression><![CDATA[$F{fecha_asistencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

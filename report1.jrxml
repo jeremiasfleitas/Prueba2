@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7bf5306e-9606-44d2-90b2-af6247e45b22">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="f863eee2-8873-4d5b-974b-1ab28fce8f7c"/>
+	<parameter name="Alumno" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT m.nombre_materia, al.nombre_alumno, a.fecha_asistencia, a.presencia_asistencia FROM asistencias a, alumnos_materias am, alumnos al, materias m
+where a.id_alumno_materia = am.id_alumno_materia
+and am.id_alumno = al.id_alumno and am.id_materia = m.id_materia and nombre_alumno = $P{Alumno}
+order BY m.nombre_materia, al.documento_alumno]]>
+	</queryString>
+	<field name="nombre_materia" class="java.lang.String"/>
+	<field name="nombre_alumno" class="java.lang.String"/>
+	<field name="fecha_asistencia" class="java.sql.Date"/>
+	<field name="presencia_asistencia" class="java.lang.String"/>
+	<group name="nombre_materia">
+		<groupExpression><![CDATA[$F{nombre_materia}]]></groupExpression>
+	</group>
+	<group name="nombre_alumno">
+		<groupExpression><![CDATA[$F{nombre_alumno}]]></groupExpression>
+	</group>
+	<group name="fecha_asistencia">
+		<groupExpression><![CDATA[$F{fecha_asistencia}]]></groupExpression>
+	</group>
+	<group name="presencia_asistencia">
+		<groupExpression><![CDATA[$F{presencia_asistencia}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="61" y="39" width="100" height="20" uuid="1fcce23b-2684-473d-a651-ee1c0a70b5ed"/>
+				<textFieldExpression><![CDATA[$P{Alumno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="2" width="100" height="20" uuid="defc13d5-9077-4b6b-bc30-04b3adbd63e6"/>
+				<text><![CDATA[nombre_materia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="2" width="100" height="20" uuid="26b4b414-edd4-4aee-b918-32e8196049d0"/>
+				<text><![CDATA[nombre_alumno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="2" width="100" height="20" uuid="c9d2e516-981c-4ef9-b16f-6aa85c55f719"/>
+				<text><![CDATA[fecha_asistencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="2" width="100" height="20" uuid="cab98437-3a43-411d-b828-413ee4d6cb68"/>
+				<text><![CDATA[presencia_asistencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="4" width="100" height="20" uuid="78a90ec4-2337-465d-8a6e-89cf162ab7a7"/>
+				<textFieldExpression><![CDATA[$F{nombre_materia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="41" width="100" height="20" uuid="f2e54869-15f6-4ce0-8adf-f489f9719a46"/>
+				<textFieldExpression><![CDATA[$F{nombre_alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="41" width="100" height="20" uuid="27153323-60e1-4606-9b67-a61eab86843f"/>
+				<textFieldExpression><![CDATA[$F{fecha_asistencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="41" width="100" height="20" uuid="e2312117-ff78-492f-b45e-3246618a9adc"/>
+				<textFieldExpression><![CDATA[$F{presencia_asistencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
